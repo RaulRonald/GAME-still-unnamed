@@ -9,7 +9,7 @@ public class Investigator : MonoBehaviour
     public float speed;
     static float InvestigatorPositionX;
     static float InvestigatorPositionY;
-
+    public GameObject IventoryIM;
 
     //essa função servirá para alterar a posição do "Investigator" durante a transição de cenas
     public void SetInvestigatorPosition(float InvPointX, float InvPointY)
@@ -21,22 +21,32 @@ public class Investigator : MonoBehaviour
     {
         //atribuições
         anim = GetComponent<Animator>();
-
     }
 
-    void Update()
+    private void Update()
     {
+        Iventory();
         running();
         move();
     }
+    public void Iventory()
+    {
+        if (IventoryIM.activeSelf == true && Input.GetKeyDown(KeyCode.X)) { 
+            IventoryIM.SetActive(false);
+        }
+        else if (IventoryIM.activeSelf == false && Input.GetKeyDown(KeyCode.X))
+        {
+            IventoryIM.SetActive(true);
+        }
+    }
     public void running()
     {
-        if(Input.GetKeyDown(KeyCode.J))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
             speed = speed * 1.5f;
         }
         else
-            if (Input.GetKeyUp(KeyCode.J))
+            if (Input.GetKeyUp(KeyCode.Z))
         {
             speed = speed/1.5f;
         }
